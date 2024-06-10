@@ -1,0 +1,87 @@
+/* LandingPage.css */
+
+/* General styles for the landing page */
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* Main content styles */
+.landing-page .main-content {
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Section styles */
+.landing-page section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.landing-page section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.landing-page section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Button styles */
+.landing-page .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.landing-page .btn:hover {
+    background-color: #45a049;
+}
+
+/* Custom styles */
+/* Box for terms and conditions */
+.landing-page .terms-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 40px; /* Increased padding */
+    margin-bottom: 60px;
+}
+
+/* Sign up text */
+.landing-page .sign-up-text {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* Make logo smaller */
+.landing-page .logo {
+    width: 200px; /* Adjust as needed */
+}
+
+/* Box for measurement details */
+.landing-page .measurement-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 40px; /* Increased padding */
+    margin-bottom: 60px; /* Same bottom margin as terms box */
+}
+
+/* Flexbox container to align terms and measurements side by side */
+.landing-page .content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+}
