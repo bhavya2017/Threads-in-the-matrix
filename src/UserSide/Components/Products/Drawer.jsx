@@ -2,9 +2,6 @@ import React from "react";
 import Filters from "./Filters";
 import {
   Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,

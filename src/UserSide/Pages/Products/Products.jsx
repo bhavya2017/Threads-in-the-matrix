@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image";
-import { Box, Flex, Grid, Heading, Stack, Text } from "@chakra-ui/layout";
+import { Box, Flex, Grid, Stack, Text } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Components/Home/Navbar";
 import Footer from "../../Components/Home/Footer";
@@ -75,7 +75,6 @@ const Products = () => {
     // fetching data and storing it in the redux
     dispatch(getProducts(products, getProductParams));
   }, [brand, category, discountRange, page, sort, products]);
-
   // pagingation
 
   const handlePage = (val) => {
@@ -231,7 +230,7 @@ const Products = () => {
             >
               <Flex justify={"center"} align="center" height="100%" gap="2">
                 <Button
-                  isDisabled={page == 1}
+                  isDisabled={page === 1}
                   onClick={() => {
                     handlePage(-1);
                   }}
@@ -242,7 +241,7 @@ const Products = () => {
                   return (
                     <Button
                       key={item + 1}
-                      colorScheme={page == item + 1 ? "pink" : null}
+                      colorScheme={page === item + 1 ? "pink" : null}
                       onClick={() => {
                         setPage(item + 1);
                       }}
@@ -252,7 +251,7 @@ const Products = () => {
                   );
                 })}
                 <Button
-                  isDisabled={page == Math.ceil(totalCount / 15)}
+                  isDisabled={page === Math.ceil(totalCount / 15)}
                   onClick={() => {
                     handlePage(+1);
                   }}

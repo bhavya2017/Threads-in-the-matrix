@@ -20,7 +20,6 @@ const Wishlist = () => {
   })
   const navigate = useNavigate()
   //userId
-  const id = userData?.uid
 
   const { wishlist: data, isLoading } = useSelector((store) => {
     return store.wishlistReducer

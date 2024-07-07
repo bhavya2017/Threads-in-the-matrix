@@ -15,7 +15,6 @@ import {
 
 import React, { useEffect } from 'react'
 import Searchbar from './Searchbar'
-import { BsBag, BsFillBagFill, BsPerson } from 'react-icons/bs'
 import { AiOutlineHeart } from 'react-icons/ai'
 import MegaMenu from './MegaMenu'
 import { Link } from 'react-router-dom'
@@ -52,7 +51,6 @@ const Navbar = () => {
       dispatch(getWishlist(id))
     }
   }, [])
-
   return (
     <Box
       position={'sticky'}

@@ -1,10 +1,9 @@
 import { Button } from '@chakra-ui/button'
-import { Image } from '@chakra-ui/image'
-import { Box, Flex, Grid, Text } from '@chakra-ui/layout'
+import { Box, Flex, Text } from '@chakra-ui/layout'
 
 import React, { useState } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import SingleProductImageSlider from './SingleProductImageSlider'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToWishlist } from '../../../Redux/Wishlist/wishlist.actions'

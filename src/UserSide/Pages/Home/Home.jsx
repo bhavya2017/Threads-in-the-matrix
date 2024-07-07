@@ -1,25 +1,20 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../../Components/Home/Navbar";
 import SimpleSlider from "../../Components/Home/FullScreenSlider";
 import ProductSlider from "../../Components/Home/ProductSlider";
 import {
-  categoriesToBagList1,
   categoriesToBagList2,
   categoriesToBagList3,
-  dealsOnTopBrandsList1,
   dealsOnTopBrandsList2,
   dealsOnTopBrandsList3,
-  imageList1,
   imageList2,
   imageList3,
-  styleCastHottestList,
   topPicksList,
 } from "../../../Utils/ProductImages";
 import "./Home.css";
 import ListHeading from "../../Components/Home/ListHeading";
 import Footer from "../../Components/Home/Footer";
-import { useSelector } from "react-redux";
 
 const Home = () => {
   return (

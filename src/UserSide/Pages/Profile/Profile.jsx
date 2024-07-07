@@ -36,7 +36,6 @@ const Profile = () => {
   useEffect(() => {
     orderAPI(id)
   }, [])
-
   return (
     <div>
       <Navbar />
@@ -89,7 +88,7 @@ const Profile = () => {
                 <Skeleton height='4rem'></Skeleton>
                 <Skeleton height='4rem'></Skeleton>
               </Flex>
-            ) : orders.length == 0 ? (
+            ) : orders.length === 0 ? (
               <Flex flexDir={'column'} justify={'center'} align='center'>
                 <Text textTransform={'capitalize'} fontSize='1.4rem' py='2rem'>
                   You haven't made any orders till now
@@ -118,7 +117,7 @@ const Profile = () => {
                         minW={'1000px'}
                       >
                         
-                        {item.status == 'pending' ? (
+                        {item.status === 'pending' ? (
                           <Badge fontSize={'0.9rem'} colorScheme={'yellow'}>
                             Order Status: {item.status}
                           </Badge>
