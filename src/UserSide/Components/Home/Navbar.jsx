@@ -50,7 +50,7 @@ const Navbar = () => {
       dispatch(getCart(id))
       dispatch(getWishlist(id))
     }
-  }, [])
+  },  [dispatch, id]);
   return (
     <Box
       position={'sticky'}

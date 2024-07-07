@@ -19,7 +19,7 @@ const Searchbar = () => {
   const handleChange = (e) => {
     setText(e.target.value)
     if (e.target.value.length === 0) {
-      return
+      return 
     }
   }
   useEffect(() => {
@@ -27,7 +27,7 @@ const Searchbar = () => {
       if (text) {
         let filterData = searchOutput.filter((item) => {
           if (item.title.toLowerCase().includes(text.toLowerCase())) {
-            return item;
+            return item.title.toLowerCase().includes(text.toLowerCase());
           }
         })
 

@@ -18,7 +18,6 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCart, addToCart } from '../../../Redux/Cart/cart.actions';
-import { useNavigate } from 'react-router-dom';
 import { MdMoreTime } from 'react-icons/md';
 
 const Cart = () => {
