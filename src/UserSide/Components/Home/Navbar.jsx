@@ -90,9 +90,7 @@ const Navbar = () => {
           <Popover>
             <PopoverTrigger>
               <Flex flexDir={'column'} align={'center'} cursor='pointer'>
-                <Text>
-                  <BsPerson fontSize={'1.26rem'} />
-                </Text>
+               
                 <Text
                   fontSize={'0.8rem'}
                   fontWeight='bold'
@@ -191,9 +189,7 @@ const Navbar = () => {
           </Link>
           <Link to='/cart'>
             <Flex flexDir={'column'} align={'center'} pos='relative'>
-              <Text>
-                <BsBag fontSize={'1.26rem'} />
-              </Text>
+              
               <Text
                 fontSize={'0.8rem'}
                 fontWeight='bold'
