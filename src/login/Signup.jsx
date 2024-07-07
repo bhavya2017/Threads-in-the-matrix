@@ -11,7 +11,7 @@ import { doc, setDoc } from "@firebase/firestore";
 import { useToast } from "@chakra-ui/toast";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../Redux/UserAuth/userAuth.actions";
-import { Flex, Box, Text } from "@chakra-ui/layout";
+import { Flex, Box, Text, UnorderedList, ListItem } from "@chakra-ui/layout";
 import Navbar from "../UserSide/Components/Home/Navbar";
 import Footer from "../UserSide/Components/Home/Footer";
 import { Button } from "@chakra-ui/react";
@@ -129,13 +129,17 @@ const Signup = () => {
               <Text fontSize="lg" fontWeight="bold">
                 Terms and Conditions
               </Text>
-              <Text fontSize="sm" mt="1rem">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
-
-Nulla facilisi. Phasellus convallis, elit a ultricies ultricies, metus lectus ullamcorper libero, quis dictum mauris nisi id urna.
-
-Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit.By signing up, you agree to our Terms and Conditions. Please read them carefully.
+              <Text fontSize="sm" fontWeight="bold">
+              By using our Virtual Fitting Room, you agree to comply with and be bound by the following terms and conditions:
               </Text>
+              <UnorderedList fontSize="sm" mt="1rem">
+                <ListItem>We collect personal information, including body measurements and images to provide this service.</ListItem>
+                <ListItem>Your data will be securely stored and protected using encryption and other security measures.</ListItem>
+                <ListItem>Collected data will be used solely to enhance your virtual fitting experience.</ListItem>
+                <ListItem>We do not share your data with third parties without your consent, except as required by law.</ListItem>
+                <ListItem>Do not upload or create content that is offensive, discriminatory, or violates the rights of others.</ListItem>
+                <ListItem>We may modify these terms at any time. Continued use of the Virtual Fitting Room constitutes acceptance of the updated terms.</ListItem>
+              </UnorderedList>
             </Box>
             <Box mt="1rem">
               <input

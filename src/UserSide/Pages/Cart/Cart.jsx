@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
@@ -6,58 +7,84 @@ import {
   GridItem,
   Image,
   Text,
-  Select,
   useDisclosure,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
   useToast,
-} from '@chakra-ui/react'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCart, addToCart } from '../../../Redux/Cart/cart.actions'
-import { useNavigate } from 'react-router-dom'
-import { MdMoreTime } from 'react-icons/md'
-import gift from './gift.png'
-import { BsTag } from 'react-icons/bs'
+} from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCart, addToCart } from '../../../Redux/Cart/cart.actions';
+import { useNavigate } from 'react-router-dom';
+import { MdMoreTime } from 'react-icons/md';
 
 const Cart = () => {
-  const dispatch = useDispatch()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const toast = useToast()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
+  const toast = useToast();
+  const navigate = useNavigate();
 
-  const userData = useSelector((store) => store.userAuthReducer.user)
-  const id = userData?.uid
+  const userData = useSelector((store) => store.userAuthReducer.user);
+  const id = userData?.uid;
 
-  const data = useSelector((store) => store.cartReducer.cart)
+  const data = useSelector((store) => store.cartReducer.cart);
 
   useEffect(() => {
     if (id) {
-      dispatch(getCart(id))
+      dispatch(getCart(id));
     }
-  }, [dispatch, id])
+  }, [dispatch, id]);
 
-  // Delete logic
+  useEffect(() => {
+    console.log('Cart data:', data); // Debugging line
+  }, [data]);
+
   const handleDelete = (item) => {
-    const updatedCart = data.filter((cartItem) => cartItem.id !== item.id)
-    dispatch(addToCart(id, updatedCart))
+    const updatedCart = data.filter((cartItem) => cartItem.id !== item.id);
+    dispatch(addToCart(id, updatedCart));
     toast({
       title: 'Item removed.',
       status: 'success',
       duration: 3000,
       isClosable: true,
-    })
-  }
+    });
+  };
 
-  const handleChangeQtt = (prodId, qtt) => {
+  const handleChangeQtt = (prodId, change) => {
     let newData = data.map((item) => {
       if (item.id === prodId) {
-        return { ...item, qtt: qtt }
+        const newQtt = item.qtt + change;
+        if (newQtt > 0) {
+          return { ...item, qtt: newQtt };
+        } else {
+          handleDelete(item);
+          return null;
+        }
       }
-      return item
-    })
-    dispatch(addToCart(id, newData))
-  }
+      return item;
+    }).filter(Boolean);
+    dispatch(addToCart(id, newData));
+  };
 
-  const cartQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const handlePlaceOrder = () => {
+    dispatch(addToCart(id, [])); // Example: Clearing cart
+    toast({
+      title: 'Order placed.',
+      description: 'Thank you for shopping!!!',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
+    onClose(); // Close the dialog after placing the order
+  };
+
+  if (!data || data.length === 0) {
+    return <Text>No items in the cart.</Text>;
+  }
 
   return (
     <div>
@@ -74,41 +101,27 @@ const Cart = () => {
                 padding={2}
               >
                 <Flex gap={2}>
-                  <Image h={'100px'} src={el.images[0]} />
-
+                  <Image h={'100px'} src={el.images[0]} alt={el.title} />
                   <Box>
                     <Text>{el.brand}</Text>
                     <p style={{ fontSize: '12px' }}>{el.title}</p>
-                    <Flex gap={2}>
-                      <Select
-                        w={'80px'}
-                        style={{ fontSize: '12px' }}
-                        h={'20px'}
-                        borderRadius={'0%'}
-                        placeholder='size'
+                    <Flex gap={2} alignItems="center">
+                      <Text>Size: {el.size}</Text>
+                    </Flex>
+                    <Flex alignItems="center" gap={2}>
+                      <Button
+                        size="xs"
+                        onClick={() => handleChangeQtt(el.id, -1)}
                       >
-                        {el?.size?.map((size) => (
-                          <option key={size} value={size}>
-                            {size}
-                          </option>
-                        ))}
-                      </Select>
-                      <Select
-                        w={'80px'}
-                        h={'20px'}
-                        style={{ fontSize: '12px' }}
-                        onChange={(e) =>
-                          handleChangeQtt(el.id, +e.target.value)
-                        }
-                        borderRadius={'0%'}
-                        placeholder='Quantity'
+                        -
+                      </Button>
+                      <Text>{el.qtt}</Text>
+                      <Button
+                        size="xs"
+                        onClick={() => handleChangeQtt(el.id, 1)}
                       >
-                        {cartQuantity?.map((qty) => (
-                          <option key={qty} value={qty}>
-                            {qty}
-                          </option>
-                        ))}
-                      </Select>
+                        +
+                      </Button>
                     </Flex>
                     <Flex py='0.4rem'>
                       <Text fontSize={'0.9rem'} pr={'0.5rem'}>
@@ -122,13 +135,9 @@ const Cart = () => {
                         ₹{el.originalPrice}
                       </Text>
                     </Flex>
-
                     <Flex>
                       <MdMoreTime />{' '}
-                      <p style={{ fontSize: '10px' }}>
-                        {' '}
-                        14 Days return Available
-                      </p>
+                      <p style={{ fontSize: '10px' }}> 14 Days return Available</p>
                     </Flex>
                   </Box>
                 </Flex>
@@ -157,10 +166,7 @@ const Cart = () => {
                 }}
               >
                 Rs.{' '}
-                {data.reduce(
-                  (acc, curr) => acc + curr.originalPrice * curr.qtt,
-                  0
-                )}
+                {data.reduce((acc, curr) => acc + curr.originalPrice * curr.qtt, 0)}
               </p>
             </Flex>
             <Flex justifyContent={'space-between'} mt={2}>
@@ -174,16 +180,13 @@ const Cart = () => {
               >
                 Rs.{' '}
                 {data.reduce(
-                  (acc, curr) =>
-                    acc + (curr.originalPrice - curr.offerPrice) * curr.qtt,
+                  (acc, curr) => acc + (curr.originalPrice - curr.offerPrice) * curr.qtt,
                   0
                 )}
               </p>
             </Flex>
             <Flex justifyContent={'space-between'} mt={2}>
-              <p style={{ fontSize: '12px', fontWeight: 'bold' }}>
-                Total Amount
-              </p>
+              <p style={{ fontSize: '12px', fontWeight: 'bold' }}>Total Amount</p>
               <p
                 style={{
                   fontSize: '12px',
@@ -193,10 +196,7 @@ const Cart = () => {
                 }}
               >
                 Rs.{' '}
-                {data.reduce(
-                  (acc, curr) => acc + curr.offerPrice * curr.qtt,
-                  0
-                )}
+                {data.reduce((acc, curr) => acc + curr.offerPrice * curr.qtt, 0)}
               </p>
             </Flex>
             <Button
@@ -205,15 +205,40 @@ const Cart = () => {
               color={'white'}
               isDisabled={data.length === 0}
               backgroundColor={'#ef506a'}
-              onClick={() => navigate('/payment')}
+              onClick={onOpen} // Open the dialog on button click
             >
               Place Order
             </Button>
           </Box>
         </GridItem>
       </Grid>
-    </div>
-  )
-}
 
-export default Cart
+      {/* AlertDialog for showing the order placed message */}
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Order Placed
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Thank you for shopping!!!
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Close
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </div>
+  );
+};
+
+export default Cart;

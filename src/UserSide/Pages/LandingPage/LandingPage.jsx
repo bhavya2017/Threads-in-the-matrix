@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Box, Button, Checkbox, Image, Text, VStack, Input } from '@chakra-ui/react';
+import { Box, Button, Checkbox, Image, Text, VStack, Input, UnorderedList, ListItem } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css'; // Import the CSS file
 
@@ -30,18 +31,16 @@ const LandingPage = () => {
         <Box flex="1" textAlign="left" mr={6}>
           {/* Terms and Conditions */}
           <Box className="terms-box">
-            <Text fontSize="lg" mb={4}>
-              Terms and Conditions
-            </Text>
-            <Text mb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
-            </Text>
-            <Text mb={4}>
-              Nulla facilisi. Phasellus convallis, elit a ultricies ultricies, metus lectus ullamcorper libero, quis dictum mauris nisi id urna.
-            </Text>
-            <Text>
-              Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit.
-            </Text>
+            <Text fontSize="lg" mb={4}>Terms and Conditions</Text>
+            <Text fontSize="sm" mb={4}>By using our Virtual Fitting Room, you agree to comply with and be bound by the following terms and conditions:</Text>
+            <UnorderedList mb={4}>
+              <ListItem>We collect personal information, including body measurements and images to provide this service.</ListItem>
+              <ListItem>Your data will be securely stored and protected using encryption and other security measures.</ListItem>
+              <ListItem>Collected data will be used solely to enhance your virtual fitting experience.</ListItem>
+              <ListItem>We do not share your data with third parties without your consent, except as required by law.</ListItem>
+              <ListItem>Do not upload or create content that is offensive, discriminatory, or violates the rights of others.</ListItem>
+              <ListItem>We may modify these terms at any time. Continued use of the Virtual Fitting Room constitutes acceptance of the updated terms.</ListItem>
+            </UnorderedList>
           </Box>
 
           {/* Checkbox */}
