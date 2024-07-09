@@ -24,20 +24,18 @@ const Searchbar = () => {
   }
   useEffect(() => {
     const id = setTimeout(() => {
-      if (text) {
-        let filterData = searchOutput.filter((item) => {
-          if (item.title.toLowerCase().includes(text.toLowerCase())) {
-            return item.title.toLowerCase().includes(text.toLowerCase());
-          }
-        })
+        if (text) {
+            let filterData = searchOutput.filter((item) => 
+                item.title.toLowerCase().includes(text.toLowerCase())
+            );
+            setData(filterData);
+        } else {
+            setData(searchOutput); // Optional: Reset data if text is empty
+        }
+    }, 300);
 
-        setData(filterData)
-      }
-    }, 900)
-    return () => {
-      clearTimeout(id)
-    }
-  }, [text])
+    return () => clearTimeout(id);
+}, [text, searchOutput]);
 
   return (
     <Box bg={color} borderRadius={'md'} pos='relative'>
