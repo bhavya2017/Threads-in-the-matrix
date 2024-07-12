@@ -45,7 +45,7 @@ const SingleProduct = () => {
 
   const getSingleProuduct = async () => {
     let res = await axios.get(
-      `https://rc201-jsondata-serverapi.onrender.com/${products}/${id}`
+      `https://backend-64ej.onrender.com/${products}/${id}`
     )
     setSingleProd(res.data)
     setLoading(false)
