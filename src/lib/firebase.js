@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: "mynew34-2aaa0.firebaseapp.com",
-  projectId: "mynew34-2aaa0",
-  storageBucket: "mynew34-2aaa0.appspot.com",
-  messagingSenderId: "491457844453",
-  appId: "1:491457844453:web:81ac2eebfbd9661da9700c",
+  apiKey: "AIzaSyBKiK5Ls_ccOyjboTXgrOCfmnoigPQkXLU",
+  authDomain: "threads-in-the-matrix.firebaseapp.com",
+  projectId: "threads-in-the-matrix",
+  storageBucket: "threads-in-the-matrix.appspot.com",
+  messagingSenderId: "1018314631419",
+  appId: "1:1018314631419:web:3de1dcef5599a4602f685e"
 };
 
 // Initialize Firebase

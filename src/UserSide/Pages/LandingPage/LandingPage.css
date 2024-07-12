@@ -52,12 +52,29 @@
 /* Custom styles */
 /* Box for terms and conditions */
 .landing-page .terms-box {
+    
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 40px; /* Increased padding */
     margin-bottom: 60px;
+    
 }
 
+/*check-box*/
+.checkbox-container {
+    position: relative;
+    display: flex;
+    left: 160px;
+    justify-content: right;
+    margin-bottom: 24px;
+  }
+.sign-container{
+    position: relative;
+    display: flex;
+    left: 160px;
+    justify-content: right;
+    margin-bottom: 24px;
+}
 /* Sign up text */
 .landing-page .sign-up-text {
     text-decoration: underline;
@@ -73,6 +90,7 @@
 .landing-page .measurement-box {
     border: 1px solid #ccc;
     border-radius: 10px;
+    height: 488px;
     padding: 40px; /* Increased padding */
     margin-bottom: 60px; /* Same bottom margin as terms box */
 }

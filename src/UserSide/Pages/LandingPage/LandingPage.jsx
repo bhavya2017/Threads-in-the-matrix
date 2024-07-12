@@ -44,11 +44,14 @@ const LandingPage = () => {
           </Box>
 
           {/* Checkbox */}
-          <Checkbox isChecked={agreed} onChange={handleCheckboxChange} mb={6}>
-            I agree to the terms and conditions
-          </Checkbox>
+          <Box className="checkbox-container">
+            <Checkbox isChecked={agreed} onChange={handleCheckboxChange} mb={6}>
+              I agree to the terms and conditions
+            </Checkbox>
+          </Box>
 
-          {/* Buttons */}
+          <Box className='sign-container'>
+            {/* Buttons */}
           <VStack spacing={4}>
             <Button
               colorScheme="teal"
@@ -67,13 +70,14 @@ const LandingPage = () => {
             {/* Render the sign-up line unconditionally */}
             <Text>If you are a new customer, <a href="/signup" className="sign-up-text">Register/SignUp</a></Text>
           </VStack>
+          </Box>
         </Box>
 
         <Box flex="1" textAlign="left" ml={6}>
           {/* Measurement Section */}
           <Box className="measurement-box">
             <Text fontSize="lg" mb={4}>Measurement Details</Text>
-            <Box mb={4}>
+            <Box mb={7}>
               <Text>Waist Measurement</Text>
               <Input
                 type="number"
@@ -82,7 +86,7 @@ const LandingPage = () => {
                 disabled={skipClicked} // Disable input when "Skip" button is clicked
               />
             </Box>
-            <Box mb={4}>
+            <Box mb={7}>
               <Text>Bust Measurement</Text>
               <Input
                 type="number"
@@ -91,7 +95,7 @@ const LandingPage = () => {
                 disabled={skipClicked} // Disable input when "Skip" button is clicked
               />
             </Box>
-            <Box mb={4}>
+            <Box mb={7}>
               <Text>Hip Measurement</Text>
               <Input
                 type="number"
