@@ -1,7 +1,6 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import React, { Component } from "react";
-import { BiStar } from "react-icons/bi";
 import Slider from "react-slick";
 
 export default class SingleProductImageSlider extends Component {

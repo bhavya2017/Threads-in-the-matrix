@@ -15,7 +15,6 @@ import {
 
 import React, { useEffect } from 'react'
 import Searchbar from './Searchbar'
-import { BsBag, BsFillBagFill, BsPerson } from 'react-icons/bs'
 import { AiOutlineHeart } from 'react-icons/ai'
 import MegaMenu from './MegaMenu'
 import { Link } from 'react-router-dom'
@@ -51,8 +50,7 @@ const Navbar = () => {
       dispatch(getCart(id))
       dispatch(getWishlist(id))
     }
-  }, [])
-
+  },  [dispatch, id]);
   return (
     <Box
       position={'sticky'}
@@ -92,9 +90,7 @@ const Navbar = () => {
           <Popover>
             <PopoverTrigger>
               <Flex flexDir={'column'} align={'center'} cursor='pointer'>
-                <Text>
-                  <BsPerson fontSize={'1.26rem'} />
-                </Text>
+               
                 <Text
                   fontSize={'0.8rem'}
                   fontWeight='bold'
@@ -193,9 +189,7 @@ const Navbar = () => {
           </Link>
           <Link to='/cart'>
             <Flex flexDir={'column'} align={'center'} pos='relative'>
-              <Text>
-                <BsBag fontSize={'1.26rem'} />
-              </Text>
+              
               <Text
                 fontSize={'0.8rem'}
                 fontWeight='bold'

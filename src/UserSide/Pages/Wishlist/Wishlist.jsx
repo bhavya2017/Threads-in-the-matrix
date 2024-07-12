@@ -15,12 +15,9 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Wishlist = () => {
-  const userData = useSelector((store) => {
-    return store.userAuthReducer.user
-  })
+  
   const navigate = useNavigate()
   //userId
-  const id = userData?.uid
 
   const { wishlist: data, isLoading } = useSelector((store) => {
     return store.wishlistReducer

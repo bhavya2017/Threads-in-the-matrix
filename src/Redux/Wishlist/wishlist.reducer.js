@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        wishlist: state.wishlist.filter((item) => item.id != payload.productId),
+        wishlist: state.wishlist.filter((item) => item.id !== payload.productId),
       }
     }
 

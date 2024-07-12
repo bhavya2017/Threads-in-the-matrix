@@ -93,7 +93,6 @@ const SingleProduct = () => {
   useEffect(() => {
     getSingleProuduct()
   }, [id])
-
   return (
     <div>
       <Navbar />

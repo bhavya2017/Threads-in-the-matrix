@@ -1,5 +1,4 @@
 import {
-  border,
   Box,
   Input,
   InputGroup,
@@ -19,26 +18,24 @@ const Searchbar = () => {
 
   const handleChange = (e) => {
     setText(e.target.value)
-    if (e.target.value.length == 0) {
-      return
+    if (e.target.value.length === 0) {
+      return 
     }
   }
   useEffect(() => {
     const id = setTimeout(() => {
-      if (text) {
-        let filterData = searchOutput.filter((item) => {
-          if (item.title.toLowerCase().includes(text.toLowerCase())) {
-            return item
-          }
-        })
+        if (text) {
+            let filterData = searchOutput.filter((item) => 
+                item.title.toLowerCase().includes(text.toLowerCase())
+            );
+            setData(filterData);
+        } else {
+            setData(searchOutput); // Optional: Reset data if text is empty
+        }
+    }, 300);
 
-        setData(filterData)
-      }
-    }, 900)
-    return () => {
-      clearTimeout(id)
-    }
-  }, [text])
+    return () => clearTimeout(id);
+}, [text, searchOutput]);
 
   return (
     <Box bg={color} borderRadius={'md'} pos='relative'>

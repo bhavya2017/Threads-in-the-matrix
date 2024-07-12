@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { getProductAPI } from "./products.api";
 import * as types from "./products.types";
 

@@ -17,7 +17,6 @@ const SingleWishlist = (props) => {
     rating,
     size,
     ratingCount,
-    products,
   } = props
   const dispatch = useDispatch()
   const toast = useToast()

@@ -18,7 +18,6 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCart, addToCart } from '../../../Redux/Cart/cart.actions';
-import { useNavigate } from 'react-router-dom';
 import { MdMoreTime } from 'react-icons/md';
 
 const Cart = () => {
@@ -26,7 +25,6 @@ const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const toast = useToast();
-  const navigate = useNavigate();
 
   const userData = useSelector((store) => store.userAuthReducer.user);
   const id = userData?.uid;
@@ -70,17 +68,6 @@ const Cart = () => {
     dispatch(addToCart(id, newData));
   };
 
-  const handlePlaceOrder = () => {
-    dispatch(addToCart(id, [])); // Example: Clearing cart
-    toast({
-      title: 'Order placed.',
-      description: 'Thank you for shopping!!!',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-    });
-    onClose(); // Close the dialog after placing the order
-  };
 
   if (!data || data.length === 0) {
     return <Text>No items in the cart.</Text>;

@@ -1,8 +1,7 @@
 import { Checkbox, CheckboxGroup } from "@chakra-ui/checkbox";
-import { Box, Flex, Stack, Text } from "@chakra-ui/layout";
+import { Box, Stack, Text } from "@chakra-ui/layout";
 import { Radio, RadioGroup } from "@chakra-ui/radio";
-import React, { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+
 
 const Filters = ({
   category,
@@ -12,7 +11,6 @@ const Filters = ({
   discountRange,
   setDiscountRange,
   setPage,
-  setCat,
 }) => {
   // let location = useLocation();
   // useEffect(() => {}, [location.search]);
