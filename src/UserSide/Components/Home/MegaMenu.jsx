@@ -51,9 +51,6 @@ const MegaMenu = () => {
               <ul>
                 <p className="women-p"> Western Wear</p>
                 <li>
-                  <Link>Dresses</Link>
-                </li>
-                <li>
                   <Link> Tops</Link>
                 </li>
                 <li>
@@ -61,27 +58,7 @@ const MegaMenu = () => {
                 </li>
                 <li>
                   <Link>Jeans</Link>
-                </li>
-                <li>
-                  <Link>Jumpsuits</Link>
-                </li>
-                <li>
-                  <Link>Shrugs</Link>
-                </li>
-                <li>
-                  <Link>Sweaters & Sweatshirts</Link>
-                </li>
-              
-                <li>
-                  <Link>Trousers & Capris</Link>
-                </li>
-                <li>
-                  <Link>Shorts & Skirts</Link>
-                </li>
-                <li>
-                  <Link>Co-ords</Link>
-                </li>
-              
+                </li>      
               </ul>
               <hr />
               <ul>
