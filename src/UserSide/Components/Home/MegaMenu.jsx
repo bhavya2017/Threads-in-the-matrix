@@ -61,24 +61,7 @@ const MegaMenu = () => {
                 </li>      
               </ul>
               <hr />
-              <ul>
-                <p className="women-p">Plus Size</p>
-                <p className="women-p">Sports & Active Wear</p>
-                
-                
-                
-              </ul>
-              <hr />
-              <ul>
-                <p className="women-p">Plus Size</p>
-          
-
-              </ul>
             </div>
-
-           
-    
-               
 
           </div>
         </Box>
