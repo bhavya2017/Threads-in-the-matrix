@@ -15,6 +15,7 @@ import {
 
 import React, { useEffect } from 'react'
 import Searchbar from './Searchbar'
+import { BsBag, BsFillBagFill, BsPerson } from 'react-icons/bs'
 import { AiOutlineHeart } from 'react-icons/ai'
 import MegaMenu from './MegaMenu'
 import { Link } from 'react-router-dom'
@@ -50,7 +51,8 @@ const Navbar = () => {
       dispatch(getCart(id))
       dispatch(getWishlist(id))
     }
-  },  [dispatch, id]);
+  }, [])
+
   return (
     <Box
       position={'sticky'}
@@ -67,15 +69,14 @@ const Navbar = () => {
         align={'center'}
       >
         <Link to='/'>
-        <Box minW={'12rem'}>
-          <Image
-            src='/logo.png'
-            alt='logo'
-            width='8.0378rem'  // Adjusted width
-            height={{ base: '4.0378rem', md: '100%' }}  // Adjusted height
-          />
-        </Box>
-
+          <Box minW={'6rem'}>
+            <Image
+              src='https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png'
+              alt='logo'
+              width='7rem'
+              height={{ base: '3rem', md: '100%' }}
+            />
+          </Box>
         </Link>
         <MegaMenu />
 
@@ -90,7 +91,9 @@ const Navbar = () => {
           <Popover>
             <PopoverTrigger>
               <Flex flexDir={'column'} align={'center'} cursor='pointer'>
-               
+                <Text>
+                  <BsPerson fontSize={'1.26rem'} />
+                </Text>
                 <Text
                   fontSize={'0.8rem'}
                   fontWeight='bold'
@@ -141,7 +144,9 @@ const Navbar = () => {
                   <Link to='/wishlist'>
                     <Text pl='2rem'>Wishlists</Text>
                   </Link>
-                 
+                  <Link to='#'>
+                    <Text pl='2rem'>gift cards</Text>
+                  </Link>
                   <Link to='#'>
                     <Text pl='2rem'>contact us</Text>
                   </Link>
@@ -189,7 +194,9 @@ const Navbar = () => {
           </Link>
           <Link to='/cart'>
             <Flex flexDir={'column'} align={'center'} pos='relative'>
-              
+              <Text>
+                <BsBag fontSize={'1.26rem'} />
+              </Text>
               <Text
                 fontSize={'0.8rem'}
                 fontWeight='bold'
