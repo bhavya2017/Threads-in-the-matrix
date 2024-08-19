@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: state.cart.map((item) => {
-          if (item.id === payload.id) {
+          if (item.id == payload.id) {
             return { ...item, qtt: payload.qtt };
           }
           return item;
