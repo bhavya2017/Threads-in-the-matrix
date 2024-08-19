@@ -1,20 +1,19 @@
 import {
   doc,
+  getDoc,
+  updateDoc,
   where,
   collection,
   query,
   getDocs,
   setDoc,
-  updateDoc,
-  arrayUnion,
 } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
-// Function to fetch cart data for a given user ID
 export const cartAPI = async (id) => {
   try {
-    const cartRef = collection(db, "cart");
-    const q = query(cartRef, where("userId", "==", id));
+    const citiesRef = collection(db, "cart");
+    const q = query(citiesRef, where("userId", "==", id));
     const querySnapshot = await getDocs(q);
     let result;
     querySnapshot.forEach((doc) => {
@@ -24,38 +23,19 @@ export const cartAPI = async (id) => {
     return result;
   } catch (error) {
     console.log(error);
-    throw new Error('Error fetching cart data');
   }
 };
 
-// Function to add item to cart for a given user ID
-export const addToCartAPI = async (id, item) => {
+
+// add to cart
+export const addToCartAPI = async (id, cartData) => {
+
   try {
-    const cartRef = collection(db, "cart");
-    const q = query(cartRef, where("userId", "==", id));
-    const querySnapshot = await getDocs(q);
-
-    let cartDoc;
-    querySnapshot.forEach((doc) => {
-      cartDoc = doc;
+    let res = await setDoc(doc(db, "cart", id), {
+      cart: cartData, // this should be array of objects cart
+      userId: id, //"userId which you get from authreducer",
     });
-
-    if (cartDoc) {
-      // If the cart exists, update it by adding the new item
-      const cartDocRef = doc(db, "cart", cartDoc.id);
-      await updateDoc(cartDocRef, {
-        items: arrayUnion(item)
-      });
-    } else {
-      // If the cart doesn't exist, create a new cart document
-      const newCartDocRef = doc(collection(db, "cart"));
-      await setDoc(newCartDocRef, {
-        userId: id,
-        items: [item]
-      });
-    }
   } catch (error) {
     console.log(error);
-    throw new Error('Error adding item to cart');
   }
 };
