@@ -6,6 +6,7 @@ import {
   Heading,
   Image,
   Skeleton,
+  Stack,
   Text,
   useToast,
 } from '@chakra-ui/react'
@@ -16,10 +17,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import { addToCart } from '../../../Redux/Cart/cart.actions'
+import { addToCart, getCart } from '../../../Redux/Cart/cart.actions'
 import Footer from '../../Components/Home/Footer'
 import Navbar from '../../Components/Home/Navbar'
-
+import SimilarProducts from '../../Components/Products/SimilarProducts'
 import { addToWishlist } from '../../../Redux/Wishlist/wishlist.actions'
 
 const SingleProduct = () => {
@@ -41,43 +42,20 @@ const SingleProduct = () => {
 
   const [singleProd, setSingleProd] = useState({})
   const [isLoading, setLoading] = useState(true)
-  const [selectedSize, setSelectedSize] = useState(null)
 
   const getSingleProuduct = async () => {
     let res = await axios.get(
-      `https://backend-64ej.onrender.com/${products}/${id}`
+      `https://rc201-jsondata-serverapi.onrender.com/${products}/${id}`
     )
     setSingleProd(res.data)
     setLoading(false)
   }
-
   const handleAdd = (item) => {
-    if (!selectedSize) {
-      toast({
-        title: 'Size not selected',
-        description: 'Please select a size before adding to the bag.',
-        status: 'warning',
-        duration: 4000,
-        position: 'top',
-        isClosable: true,
-      })
-      return
-    }
     item.qtt = 1
-    item.size = selectedSize
     allCartItems = [...allCartItems, item]
     // get userid from authReducer
     dispatch(addToCart(userid, allCartItems))
-    toast({
-      title: 'Product is Added to the cart',
-      description: 'Shop More ...',
-      status: 'success',
-      duration: 4000,
-      position: 'top',
-      isClosable: true,
-    })
   }
-
   const handleAddToWishlist = () => {
     dispatch(addToWishlist(userid, singleProd, singleProd.id))
     toast({
@@ -93,6 +71,7 @@ const SingleProduct = () => {
   useEffect(() => {
     getSingleProuduct()
   }, [id])
+
   return (
     <div>
       <Navbar />
@@ -175,50 +154,78 @@ const SingleProduct = () => {
             </Flex>
             <Text color={'green.600'}>inclusive of all taxes</Text>
             <Text fontSize={'1.5rem'}>Select Size</Text>
-            <Flex gap='2' my='1rem' flexWrap='wrap'>
-              {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-                <Center
-                  key={size}
-                  border={'1px'}
-                  width='3rem'
-                  height={'3rem'}
-                  borderRadius={'50%'}
-                  cursor='pointer'
-                  borderColor={selectedSize === size ? 'blue.500' : 'gray.200'}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </Center>
-              ))}
+            <Flex gap='2' my='1rem'>
+              <Center
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
+              >
+                S
+              </Center>
+              <Center
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
+              >
+                M
+              </Center>
+              <Center
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
+              >
+                L
+              </Center>
+              <Center
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
+              >
+                XL
+              </Center>
+              <Center
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
+              >
+                XXL
+              </Center>
             </Flex>
             <Flex p={{ base: '0.2rem', md: '2rem' }} gap='1rem'>
               <Button
                 colorScheme={'pink'}
                 py='0.5rem'
                 px='4rem'
-                onClick={() => handleAdd(singleProd)}
                 isDisabled={allCartItems.find(
-                  (item) => item.id === singleProd.id
+                  (item) => item.id == singleProd.id
                 )}
+                onClick={() => {
+                  handleAdd(singleProd)
+                  toast({
+                    title: 'Product is Added to the cart',
+                    description: 'Shop More ...',
+                    status: 'success',
+                    duration: 4000,
+                    position: 'top',
+                    isClosable: true,
+                  })
+                }}
               >
                 ADD TO BAG
               </Button>
-              
               <Button
                 py='0.5rem'
                 px='4rem'
                 onClick={handleAddToWishlist}
                 isDisabled={allWishlistData.find((item) => item.id === id)}
               >
+                {' '}
                 WISHLIST
-              </Button>
-              <Button
-                colorScheme={'pink'}
-                py='0.5rem'
-                px='4rem'
-              
-              >
-                TRY
               </Button>
             </Flex>
             <Text>100% Original Products</Text>
@@ -227,7 +234,7 @@ const SingleProduct = () => {
           </Box>
         </Flex>
       )}
-      
+      {/* {!isLoading && <SimilarProducts />} */}
 
       <Footer />
     </div>
@@ -235,3 +242,71 @@ const SingleProduct = () => {
 }
 
 export default SingleProduct
+
+//  const dispatch = useDispatch();
+//  let data = [
+//    {
+//      id: "W22222",
+//      category: "Womens",
+//      subCategory: "KurtaSet",
+//      brand: "KALINI",
+//      title: "Women Yoke Design Kurta Set",
+//      offerPrice: "887",
+//      originalPrice: "3699",
+//      discount: "76%",
+//      quantity: 34,
+//      images: [
+//        "https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_1.8,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.2,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.4,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.6,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.8,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//      ],
+//      size: ["S", "M", "L", "XL", "XXL"],
+//      rating: "4.1",
+//      ratingCount: "1.9k",
+//    },
+//    {
+//      id: "W1",
+//      category: "Womens",
+//      subCategory: "KurtaSet",
+//      brand: "KALINI",
+//      title: "Women Yoke Design Kurta Set",
+//      offerPrice: "887",
+//      originalPrice: "3699",
+//      discount: "76%",
+//      quantity: 34,
+//      images: [
+//        "https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_1.8,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.2,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.4,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.6,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//        "https://assets.myntassets.com/f_webp,dpr_2.8,q_60,w_210,c_limit,fl_progressive/assets/images/18652620/2022/8/26/4d5f7043-a460-42e5-b67a-b04d9c0bc7041661503606623-KALINI-Women-Beige-Floral-Yoke-Design-Kurta-with-Trousers--W-1.jpg",
+//      ],
+//      size: ["S", "M", "L", "XL", "XXL"],
+//      rating: "4.1",
+//      ratingCount: "1.9k",
+//    },
+//  ];
+//  const sett = async () => {
+//    let res = await setDoc(doc(db, "cart", "hello world again"), {
+//      id: 4,
+//      cart: data,
+//    });
+//    console.log("res", res);
+//  };
+//  useEffect(() => {
+//    // sett();
+//    dispatch(getCart(4));
+//  }, []);
+//  console.log("check");
+//  let carrtt = useSelector((store) => {
+//    return store.cartReducer.cart;
+//  });
+//  console.log("done", carrtt);
