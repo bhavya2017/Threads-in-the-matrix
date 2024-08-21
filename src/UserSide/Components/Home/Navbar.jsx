@@ -71,7 +71,7 @@ const Navbar = () => {
         <Link to='/'>
           <Box minW={'6rem'}>
             <Image
-              src='https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png'
+              src='"D:\build\Attirely_admin_logo.png"'
               alt='logo'
               width='7rem'
               height={{ base: '3rem', md: '100%' }}
