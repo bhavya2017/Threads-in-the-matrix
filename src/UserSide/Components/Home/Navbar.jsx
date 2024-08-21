@@ -71,7 +71,7 @@ const Navbar = () => {
         <Link to='/'>
           <Box minW={'6rem'}>
             <Image
-              src='"D:\build\logo.png'
+              src='/logo.png'
               alt='logo'
               width='7rem'
               height={{ base: '3rem', md: '100%' }}
@@ -144,9 +144,7 @@ const Navbar = () => {
                   <Link to='/wishlist'>
                     <Text pl='2rem'>Wishlists</Text>
                   </Link>
-                  <Link to='#'>
-                    <Text pl='2rem'>gift cards</Text>
-                  </Link>
+                 
                   <Link to='#'>
                     <Text pl='2rem'>contact us</Text>
                   </Link>
