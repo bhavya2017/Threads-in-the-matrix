@@ -69,12 +69,12 @@ const Navbar = () => {
         align={'center'}
       >
         <Link to='/'>
-          <Box minW={'6rem'}>
+          <Box minW={'9rem'}>
             <Image
               src='/logo.png'
               alt='logo'
-              width='7rem'
-              height={{ base: '3rem', md: '100%' }}
+              width='9rem'
+              height={{ base: '4rem', md: '100%' }}
             />
           </Box>
         </Link>
