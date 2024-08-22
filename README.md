@@ -15,6 +15,8 @@
   <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
 </p>
 
+#This is an offline shopping website designed for women to select, try on, and purchase clothes directly in-store. This platform ensures a seamless and smooth user experience, allowing customers to easily navigate and operate the website. With advanced features for efficient management, Threads in the Matrix aims to enhance the shopping experience by integrating online convenience with offline shopping benefits.
+
 ## Live link : <a href="https://tim-83d3h1ppy-bhavya2017s-projects.vercel.app/">Threads in the matrix</a>
 <br />
 
@@ -39,7 +41,33 @@ with Firebase Authentication
 
 <br />
 
-This is an offline shopping website designed for women to select, try on, and purchase clothes directly in-store. This platform ensures a seamless and smooth user experience, allowing customers to easily navigate and operate the website. With advanced features for efficient management, Threads in the Matrix aims to enhance the shopping experience by integrating online convenience with offline shopping benefits.
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
 
 
 
