@@ -224,20 +224,16 @@ const Cart = () => {
               </p>
             </Flex>
             <Button
-              width={['100%', '80%']}
-              borderRadius={'0%'}
-              color={'white'}
-              isDisabled={data.length === 0}
-              backgroundColor={'#ef506a'}
-              onClick={onOpen} // Open the dialog on button click
-            >
-              Place Order
-            </Button>
-          </Box>
-        </GridItem>
-      </Grid>
+        width={['100%', '80%']}
+        borderRadius={'0%'}
+        color={'white'}
+        isDisabled={data.length === 0}
+        backgroundColor={'#ef506a'}
+        onClick={handlePlaceOrder} // Updated to call handlePlaceOrder
+      >
+        Place Order
+      </Button>
 
-      {/* AlertDialog for showing the order placed message */}
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -250,6 +246,8 @@ const Cart = () => {
             </AlertDialogHeader>
 
             <AlertDialogBody>
+              Your order ID: {orderId} <br />
+              Please collect your order. <br />
               Thank you for shopping!!!
             </AlertDialogBody>
 
