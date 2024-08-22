@@ -7,7 +7,11 @@
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-  <img src="[https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white](https://tse4.mm.bing.net/th?id=OIP.ewjNK-jBTf8sgJA09DraPgHaFd&pid=Api&P=0&h=180)" alt="Vercel" />
+  <img 
+  src="https://tse4.mm.bing.net/th?id=OIP.ewjNK-jBTf8sgJA09DraPgHaFd&pid=Api&P=0&h=180" 
+  alt="Netlify" 
+  style="width: auto; height: auto;" 
+/>
   <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
 </p>
 
