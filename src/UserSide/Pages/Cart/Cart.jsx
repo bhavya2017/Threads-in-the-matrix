@@ -18,7 +18,6 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCart, addToCart } from '../../../Redux/Cart/cart.actions';
-import { useNavigate } from 'react-router-dom';
 import { MdMoreTime } from 'react-icons/md';
 
 const Cart = () => {
@@ -26,7 +25,6 @@ const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const toast = useToast();
-  const navigate = useNavigate();
 
   const userData = useSelector((store) => store.userAuthReducer.user);
   const id = userData?.uid;
@@ -70,17 +68,6 @@ const Cart = () => {
     dispatch(addToCart(id, newData));
   };
 
-  const handlePlaceOrder = () => {
-    dispatch(addToCart(id, [])); // Example: Clearing cart
-    toast({
-      title: 'Order placed.',
-      description: 'Thank you for shopping!!!',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-    });
-    onClose(); // Close the dialog after placing the order
-  };
 
   if (!data || data.length === 0) {
     return (
@@ -101,7 +88,7 @@ const Cart = () => {
           px='2rem'
           colorScheme='pink'
           onClick={() => {
-            navigate('/product/MensData');
+            navigate('/product/WomensData');
           }}
         >
           Browse Products
@@ -109,6 +96,7 @@ const Cart = () => {
       </Flex>
     );
   }
+  
 
   return (
     <div>
@@ -224,16 +212,20 @@ const Cart = () => {
               </p>
             </Flex>
             <Button
-        width={['100%', '80%']}
-        borderRadius={'0%'}
-        color={'white'}
-        isDisabled={data.length === 0}
-        backgroundColor={'#ef506a'}
-        onClick={handlePlaceOrder} // Updated to call handlePlaceOrder
-      >
-        Place Order
-      </Button>
+              width={['100%', '80%']}
+              borderRadius={'0%'}
+              color={'white'}
+              isDisabled={data.length === 0}
+              backgroundColor={'#ef506a'}
+              onClick={onOpen} // Open the dialog on button click
+            >
+              Place Order
+            </Button>
+          </Box>
+        </GridItem>
+      </Grid>
 
+      {/* AlertDialog for showing the order placed message */}
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -246,8 +238,6 @@ const Cart = () => {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Your order ID: {orderId} <br />
-              Please collect your order. <br />
               Thank you for shopping!!!
             </AlertDialogBody>
 
