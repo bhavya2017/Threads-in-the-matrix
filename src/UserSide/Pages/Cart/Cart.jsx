@@ -83,7 +83,31 @@ const Cart = () => {
   };
 
   if (!data || data.length === 0) {
-    return <Text>No items in the cart.</Text>;
+    return (
+      <Flex
+        width={'full'}
+        flexDir={'column'}
+        pos={'absolute'}
+        paddingTop={'3rem'}
+        color={'gray.500'}
+        justify={'center'}
+        align={'center'}
+      >
+        <Text textAlign={'center'} fontSize={'1.5rem'}>
+          There are no products in your Bag
+        </Text>
+        <Button
+          mt={'2rem'}
+          px='2rem'
+          colorScheme='pink'
+          onClick={() => {
+            navigate('/product/MensData');
+          }}
+        >
+          Browse Products
+        </Button>
+      </Flex>
+    );
   }
 
   return (
