@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
 </p>
 
-#This is an offline shopping website designed for women to select, try on, and purchase clothes directly in-store. This platform ensures a seamless and smooth user experience, allowing customers to easily navigate and operate the website. With advanced features for efficient management, Threads in the Matrix aims to enhance the shopping experience by integrating online convenience with offline shopping benefits.
+This is an offline shopping website designed for women to select, try on, and purchase clothes directly in-store. This platform ensures a seamless and smooth user experience, allowing customers to easily navigate and operate the website. With advanced features for efficient management, Threads in the Matrix aims to enhance the shopping experience by integrating online convenience with offline shopping benefits.
 
 ## Live link : <a href="https://tim-83d3h1ppy-bhavya2017s-projects.vercel.app/">Threads in the matrix</a>
 <br />
