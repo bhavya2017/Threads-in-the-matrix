@@ -21,7 +21,6 @@ import { getCart, addToCart } from '../../../Redux/Cart/cart.actions';
 import { MdMoreTime } from 'react-icons/md';
 
 const Cart = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
@@ -85,16 +84,15 @@ const Cart = () => {
           There are no products in your Bag
         </Text>
         <Button
-  mt={'2rem'}
-  px='2rem'
-  colorScheme='pink'
-  onClick={() => {
-    navigate('/product/WomensData'); // This will now work
-  }}
->
-  Browse Products
-</Button>
-
+          mt={'2rem'}
+          px='2rem'
+          colorScheme='pink'
+          onClick={() => {
+            navigate('/product/MensData');
+          }}
+        >
+          Browse Products
+        </Button>
       </Flex>
     );
   }
@@ -256,3 +254,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
