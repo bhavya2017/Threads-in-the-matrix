@@ -8,7 +8,7 @@
 
 <p align="center">
   <img 
-  src="https://tse4.mm.bing.net/th?id=OIP.ewjNK-jBTf8sgJA09DraPgHaFd&pid=Api&P=0&h=180" 
+  src="https://tse1.mm.bing.net/th?id=OIP.orw6m8KWieCzzZYdqALyvgHaEo&pid=Api&rs=1&c=1&qlt=95&w=154&h=96" 
   alt="Vercel"
   style="width: 100px; height: 30px;" 
 />
