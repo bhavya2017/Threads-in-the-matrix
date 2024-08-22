@@ -10,7 +10,7 @@
   <img 
   src="https://tse4.mm.bing.net/th?id=OIP.ewjNK-jBTf8sgJA09DraPgHaFd&pid=Api&P=0&h=180" 
   alt="Vercel"
-  style="width: 10px; height: 10px;" 
+  style="width: 100px; height: 100px;" 
 />
   <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
 </p>
