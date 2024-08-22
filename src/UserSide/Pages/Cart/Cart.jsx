@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -17,6 +17,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { getCart, addToCart } from '../../../Redux/Cart/cart.actions';
 import { MdMoreTime } from 'react-icons/md';
 
@@ -25,11 +26,13 @@ const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const toast = useToast();
+  const navigate = useNavigate(); // Initialize navigate
 
   const userData = useSelector((store) => store.userAuthReducer.user);
   const id = userData?.uid;
 
   const data = useSelector((store) => store.cartReducer.cart);
+  const [orderId, setOrderId] = useState(null); // State to store the generated Order ID
 
   useEffect(() => {
     if (id) {
@@ -68,9 +71,39 @@ const Cart = () => {
     dispatch(addToCart(id, newData));
   };
 
+  const handlePlaceOrder = () => {
+    // Generate a random Order ID
+    const generatedOrderId = Math.floor(Math.random() * 1000000);
+    setOrderId(generatedOrderId);
+    onOpen(); // Open the AlertDialog
+  };
 
   if (!data || data.length === 0) {
-    return <Text>No items in the cart.</Text>;
+    return (
+      <Flex
+        width={'full'}
+        flexDir={'column'}
+        pos={'absolute'}
+        paddingTop={'3rem'}
+        color={'gray.500'}
+        justify={'center'}
+        align={'center'}
+      >
+        <Text textAlign={'center'} fontSize={'1.5rem'}>
+          There are no products in your Bag
+        </Text>
+        <Button
+          mt={'2rem'}
+          px='2rem'
+          colorScheme='pink'
+          onClick={() => {
+            navigate('/product/MensData');
+          }}
+        >
+          Browse Products
+        </Button>
+      </Flex>
+    );
   }
 
   return (
@@ -192,7 +225,7 @@ const Cart = () => {
               color={'white'}
               isDisabled={data.length === 0}
               backgroundColor={'#ef506a'}
-              onClick={onOpen} // Open the dialog on button click
+              onClick={handlePlaceOrder} // Use the function to handle place order
             >
               Place Order
             </Button>
@@ -213,7 +246,8 @@ const Cart = () => {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Thank you for shopping!!!
+              Thank you for shopping!!! <br />
+              {orderId && `Your Order ID: ${orderId}. Please collect your order.`}
             </AlertDialogBody>
 
             <AlertDialogFooter>
